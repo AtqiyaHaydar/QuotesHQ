@@ -27,17 +27,18 @@ const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/quote");
-    const data = await response.json();
-
-    setAllPosts(data);
-    console.log(data);
-  }
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("api/quote");
+      const data = await response.json();
+
+      setAllPosts(data);
+      console.log(data);
+      console.log("Successfully fetch")
+    }
+
     fetchPosts();
-  }, []);
+  })
 
   const filteredQuotes = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
