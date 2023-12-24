@@ -1,4 +1,4 @@
-import Quote from "@model/quote";
+import Quote from "@models/quote";
 import { connectToDB } from "@utils/database";
 
 export const POST = async (request) => {
