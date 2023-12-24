@@ -3,12 +3,13 @@ import { connectToDB } from "@utils/database";
 
 export const GET = async (request) => {
   try {
-    await connectToDB();
+    await connectToDB()
 
-    const quotes = await Quote.find({}).populate('creator')
+    const quotes = await Quote.find({}).sort({ createdAt: -1 }).populate('creator')
 
-    return new Response(JSON.stringify(quotes), { status: 200})
+    return new Response(JSON.stringify(quotes), { status: 200 })
   } catch (error) {
+    console.log("Failed to detch quots", error)
     return new Response("Failed to fetch all quote", { status: 500 })
   }
 }
